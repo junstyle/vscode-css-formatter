@@ -1,0 +1,42 @@
+{
+    "name": "css-formatter",
+    "displayName": "CSS Formatter",
+    "description": "CSS Formatter extension for VS Code, properties in one line",
+    "version": "1.0.0",
+    "publisher": "junstyle",
+    "author": "junstyle",
+    "license": "ISC",
+    "homepage": "https://github.com/junstyle/vscode-css-formatter",
+    "icon": "logo.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/junstyle/vscode-css-formatter.git"
+    },
+    "engines": {
+        "vscode": "^1.9.0"
+    },
+    "categories": [
+        "Formatters"
+    ],
+    "activationEvents": [
+        "onLanguage:css"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [],
+        "configuration": {
+            "title": "CSS Formatter",
+            "type": "object",
+            "properties": {}
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm update"
+    },
+    "devDependencies": {
+        "vscode-test": "^1.2.0"
+    },
+    "dependencies": {
+        "clean-css": "^5.1.2"
+    }
+}

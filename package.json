@@ -2,7 +2,7 @@
     "name": "css-formatter",
     "displayName": "CSS Formatter",
     "description": "CSS Formatter extension for VS Code, properties in one line",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "junstyle",
     "author": "junstyle",
     "license": "ISC",

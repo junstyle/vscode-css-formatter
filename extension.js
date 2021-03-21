@@ -38,7 +38,7 @@ class CSSFormatter {
             })
 
             let css = document.getText();
-            let css2 = css.replace(/\/\*[^!]+/g, '/*!##tokens')
+            let css2 = css.replace(/\/\*(?!=!)/g, '/*!##tokens')
             css2 = css2.replace(/(\r?\n)(?=\r?\n)/g, '$1/*!-#tokens-#*/')
             let output = cleaner.minify(css2)
             if (output) {

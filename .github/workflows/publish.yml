@@ -27,6 +27,5 @@ jobs:
           cache: "npm"
       - run: npm install
       - run: npm install -g vsce esbuild
-      - run: node ./download-phar.js
       - run: esbuild ./extension.js --bundle --minify --allow-overwrite --outfile=./extension.js --external:vscode --format=cjs --platform=node
       - run: vsce publish -p ${{ secrets.VSC_TOKEN }}

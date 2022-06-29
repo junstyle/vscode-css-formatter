@@ -1,10 +1,6 @@
 .vscode/**
-.vscode-test/**
-test/**
+.github/**
 .gitignore
+node_modules/
 jsconfig.json
-vsc-extension-quickstart.md
 .eslintrc.json
-.travis.yml
-webpack.config.js
-node_modules/**

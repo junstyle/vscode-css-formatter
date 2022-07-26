@@ -61,15 +61,17 @@ class CSSFormatter {
           css2 = css2.replace(/\/\*!##tokens/g, '/*')
           css2 = css2.replace(/\/\*!-#tokens-#\*\//g, '')
           css2 = css2.replace(/(\r?\n){2,}/g, '$1$1')
+          css2 = css2.replace(/;\/\*/g, ';\n/*')
 
           let lines = css2.split(/\r?\n/g)
           let arr = []
           let braces = 0
           let inRule = false
+          let inBlockComment = false
           for (let i = 0, len = lines.length; i < len; i++) {
             let line = lines[i]
 
-            if (inRule) {
+            if (inRule && inBlockComment == false) {
               if (line.endsWith('{')) {
                 arr.push('  ')
               } else if (braces == 1 && line.endsWith('*/')) {
@@ -77,7 +79,20 @@ class CSSFormatter {
               }
             }
 
+            if (line.startsWith('/*') && line.endsWith('*/') == false) {
+              inBlockComment = true
+            }
+
             arr.push(line)
+
+            if (inBlockComment) {
+              if (line.endsWith('*/')) {
+                inBlockComment = false
+              } else {
+                arr.push('\n')
+                continue
+              }
+            }
 
             if (line == '') {
               if (braces == 0) {

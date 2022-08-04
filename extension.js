@@ -1,7 +1,6 @@
 'use strict'
 const { TextEdit, languages, Range, Position } = require('vscode')
 const CleanCSS = require('clean-css')
-const { listenerCount } = require('process')
 
 class CSSFormatter {
   /**
@@ -13,6 +12,8 @@ class CSSFormatter {
   registerDocumentProvider(document, options) {
     return new Promise((resolve, reject) => {
       let cleaner = new CleanCSS({
+        inline: false,
+        rebase: false,
         level: {
           1: {
             all: false,
@@ -46,7 +47,6 @@ class CSSFormatter {
       })
 
       let css = document.getText()
-      document.eol
       let css2 = css.replace(/\/\*(?!=!)/g, '/*!##tokens') //comment
       css2 = css2.replace(/(\r?\n){2,}/g, '$1/*!-#tokens-#*/$1')
       let output = cleaner.minify(css2)
@@ -110,6 +110,8 @@ class CSSFormatter {
               }
             } else if (line.startsWith('@') == false) {
               arr.push(' ')
+            } else if (line.startsWith('@') && line.endsWith(';')) {
+              arr.push('\n')
             }
 
             if (line.endsWith('{')) {

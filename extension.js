@@ -73,6 +73,10 @@ class CSSFormatter {
 
             if (inRule && inBlockComment == false) {
               if (line.endsWith('{')) {
+                if (arr[arr.length - 1] != ' ') {
+                  arr.push('  ')
+                }
+              } else if (line.endsWith(',')) {
                 arr.push('  ')
               } else if (braces == 1 && line.endsWith('*/')) {
                 arr.push('  ')
@@ -108,6 +112,8 @@ class CSSFormatter {
               } else {
                 arr.push(' ')
               }
+            } else if (line.endsWith(',')) {
+              arr.push(' ')
             } else if (line.startsWith('@') == false) {
               arr.push(' ')
             } else if (line.startsWith('@') && line.endsWith(';')) {
